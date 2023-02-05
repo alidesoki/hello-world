@@ -15,8 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say hello
-          command: "echo Hello, World!"
+          name: "Say hello"
+          command: "echo Hello, World"
+          
   print-hello:
     docker:
       - image: circleci/node:13.8.0
