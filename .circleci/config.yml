@@ -46,9 +46,9 @@ jobs:
       - checkout
       - run: "echo hello my name is Ali and I am in Workspace > output-workspace.txt"    
       - persist_to_workspace:
-          root: /tmp
+          root: ./
           paths:
-            - "./output.txt"
+            - "/output.txt"
 
   print_output_file_workspace:
     docker: 
@@ -56,7 +56,7 @@ jobs:
     steps: 
       - checkout
       - attach_workspace:
-          at: /tmp
+          at: ./
       - run: "cat output-workspace.txt"
   
   say-my-name:
