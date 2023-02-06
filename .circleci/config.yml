@@ -9,8 +9,8 @@ commands:
       to:
         type: string
         default: $CIRCLE_WORKFLOW_ID
-      steps: 
-        - run: "echo << parameters.to >>"
+    steps: 
+      - run: "echo << parameters.to >>"
             
 
 # Define a job to be invoked later in a workflow.
