@@ -35,7 +35,9 @@ jobs:
     steps: 
       - checkout
       - restore_cache:
-          key: save-output-{{ checksum "output.txt" }}
+          keys: 
+            - save-output-{{ checksum "output.txt" }}
+            - save-output-
       - run: "cat output.txt"
   
   say-my-name:
