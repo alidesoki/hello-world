@@ -86,7 +86,13 @@ jobs:
     steps:
       - checkout
       - print_pipeline_id
-
+  fail_job:
+    <<: *defaults
+    steps:
+      - run: return 1
+      - run: 
+          command: echo "This is a failed operation"
+          when: on_fail
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -103,3 +109,8 @@ workflows:
           requires:
             - save_hello_world_output_workspace
       - commands-job
+      - fail_job:
+          requires:
+            - save_hello_world_output_workspace
+            - save_hello_world_output
+            - commands-job
