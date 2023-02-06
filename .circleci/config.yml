@@ -46,7 +46,7 @@ jobs:
       - checkout
       - run: "echo hello my name is Ali and I am in Workspace > output-workspace.txt"    
       - persist_to_workspace:
-          root: /tmp/dir
+          root: /tmp
           paths:
             - "./output.txt"
 
@@ -56,7 +56,7 @@ jobs:
     steps: 
       - checkout
       - attach_workspace:
-          at: /tmp/dir
+          at: /tmp
       - run: "cat output-workspace.txt"
   
   say-my-name:
