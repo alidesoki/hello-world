@@ -44,7 +44,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: "echo hello my name is Ali and I'm in Workspace > output-workspace.txt"    
+      - run: "echo hello my name is Ali and I am in Workspace > output-workspace.txt"    
       - persist_to_workspace:
           root: /tmp/dir
           paths:
