@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run: "echo hello my name is Ali > output.txt"    
       - save_cache:
-          key: save-output-{{ checksum "output.txt" }}
+          key: save-output
           paths:
           - "./output.txt"
 
@@ -36,8 +36,7 @@ jobs:
       - checkout
       - restore_cache:
           keys: 
-            - save-output-{{ checksum "output.txt" }}
-            - save-output-
+            - save-output
       - run: "cat output.txt"
   
   say-my-name:
