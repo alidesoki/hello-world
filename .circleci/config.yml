@@ -50,6 +50,6 @@ workflows:
       - print-world: 
           requires: 
             - print-hello
-      - say-my-name
+      - say-my-name:
           requires: 
             - print-world
