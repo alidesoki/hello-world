@@ -17,21 +17,27 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World"
-          
-  print-hello:
+  
+  save_hello_world_output:
     docker:
-      - image: circleci/node:13.8.0
+      - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          command: "echo Hello"
-  print-world:
-    docker:
-      - image: circleci/node:13.8.0
+      - run: "echo hello my name is Ali > output.txt"    
+      - save_cache:
+          key: save-output-{{ checksum "output.txt" }}
+          paths:
+          - "./output.txt"
+
+  print_output_file:
+    docker: 
+      - image: cimg/base:stable
     steps: 
       - checkout
-      - run:
-          command: "echo world"
+      - restore_cache:
+          key: save-output-{{ checksum "output.txt" }}
+      - run: "cat output.txt"
+  
   say-my-name:
     docker:
       - image: circleci/node:13.8.0
@@ -46,10 +52,8 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - print-hello
-      - print-world: 
-          requires: 
-            - print-hello
-      - say-my-name:
-          requires: 
-            - print-world
+      - say-my-name
+      - save_hello_world_output
+      - print_output_file:
+          requires:
+            - save_hello_world_output
